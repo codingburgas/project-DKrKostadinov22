@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 text-center">
+        <div class="p-5 bg-white shadow rounded">
+            <i class="bi bi-exclamaion-octagon text-danger" style="font-size: 5rem;"></i>
+            <h1 class="display-4 text-danger mt-3">403</h1>
+            <h2 class="fw-bold">Access Denied</h2>
+            <hr class="my-4">
+            <p class="lead text-muted">
+                You do not have the necessary permissions to access this administrative module.
+                Only users with the <strong>Admin</strong> role can view this content.
+            </p>
+            <div class="mt-4">
+                <a asp-controller="Statistics" asp-action="Index" class="btn btn-outline-primary px-4">
+                    <i class="bi bi-house"></i> Back to Dashboard
+                </a>
+                <form asp-action="Logout" method="post" class="d-inline ms-2">
+                    <button type="submit" class="btn btn-link text-decoration-none">Sign in as different user</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

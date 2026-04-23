@@ -1,0 +1,38 @@
+﻿@model PharmacyManager.DTOs.MedicamentDto
+
+@{
+    ViewData["Title"] = "Medicament Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0"><i class="bi bi-capsule"></i> Medicament Information</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">Name</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3">Price</dt>
+                <dd class="col-sm-9 text-success fw-bold">@Model.Price.ToString("F2") lv.</dd>
+
+                <dt class="col-sm-3">Expiration Date</dt>
+                <dd class="col-sm-9">@Model.ExpiryDate.ToString("MM/dd/yyyy")</dd>
+                
+                @* Add extra fields here once you verify their names in MedicamentDto.cs *@
+            </dl>
+        </div>
+        <div class="card-footer d-flex gap-2">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Edit
+                </a>
+            }
+        </div>
+    </div>
+</div>

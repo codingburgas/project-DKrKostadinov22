@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using PharmacyManager.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item d-flex align-items-center">
+            <span class="nav-link text-dark me-2">
+                <i class="bi bi-person-circle text-primary"></i> Hello, @(User.Identity?.Name ?? "Pharmacist")!
+            </span>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark border-0">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">
+                <i class="bi bi-person-plus"></i> Register
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </a>
+        </li>
+    }
+</ul>

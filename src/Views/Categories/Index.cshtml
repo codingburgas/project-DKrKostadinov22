@@ -1,0 +1,85 @@
+﻿@model IEnumerable<PharmacyManager.DTOs.CategoryDto>
+
+@{
+    ViewData["Title"] = "Drug Categories";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="bi bi-tags"></i> Classification Groups</h5>
+                    <span class="badge bg-light text-dark">@Model.Count() Categories</span>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">Category Name</th>
+                                <th class="text-center">Medicaments Link</th>
+                                <th class="text-end pe-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="ps-3 fw-bold">@item.Name</td>
+                                    <td class="text-center">
+                                        <span class="badge rounded-pill bg-info text-dark">
+                                            @item.MedicamentsCount items
+                                        </span>
+                                    </td>
+                                    <td class="text-end pe-3">
+                                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this category?');" style="display:inline;">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                            @if (!Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center py-4 text-muted">No categories defined yet.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Add New Category</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Category Name</label>
+                            <input name="Name" class="form-control" placeholder="e.g. Antibiotics, Supplements" required />
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-plus-circle"></i> Save Category
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer small text-muted">
+                    Categories are used to organize stocks and filtering.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,78 @@
+﻿@model PharmacyManager.DTOs.RegisterDto
+
+@{
+    ViewData["Title"] = "Register New Account";
+}
+
+<div class="row justify-content-center align-items-center" style="min-height: 75vh;">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-header bg-success text-white text-center py-3">
+                <h4 class="mb-0"><i class="bi bi-person-plus-fill"></i> Create Staff Account</h4>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger small mb-3"></div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="FirstName" class="form-label">First Name</label>
+                            <input asp-for="FirstName" class="form-control" placeholder="John" />
+                            <span asp-validation-for="FirstName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LastName" class="form-label">Last Name</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Doe" />
+                            <span asp-validation-for="LastName" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input asp-for="Email" class="form-control" placeholder="email@pharmacy.com" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Min. 6 characters" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-shield-check"></i></span>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Repeat password" />
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg shadow-sm">
+                            <i class="bi bi-check-circle"></i> Register
+                        </button>
+                        <a asp-action="Login" class="btn btn-outline-secondary">
+                            Back to Login
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer bg-light text-center py-2">
+                <small class="text-muted">Registering as: Pharmacist/Staff</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

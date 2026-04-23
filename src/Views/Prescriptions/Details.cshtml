@@ -1,0 +1,7 @@
+﻿@model PharmacyManager.DTOs.PrescriptionDto
+<div class="container">
+    <h2>Details for Prescription #@Model.Id</h2>
+    <p>Patient: @Model.PatientName</p>
+    <p>Doctor: @Model.DoctorName</p>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</div>
